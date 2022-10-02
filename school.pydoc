@@ -1,0 +1,136 @@
+Help on module school:
+
+NAME
+    school
+
+DESCRIPTION
+    A simple teaching example of a module with a few classes.
+    Persistence for the data structures should be implemented using the shelve library
+    A Course object is a list of students, holding prerequisites and other information.
+    A Student object is a simple composition of student information.
+    An Institution object determines the active set of student and course records
+
+    Attributions
+
+    Enumerate additional attributions by adding items to this list:
+
+    1. Submitted by <your name here>, <date here>
+    2. Original problem sources by Prof. E. Brown, Oct, 2022
+
+CLASSES
+    builtins.list(builtins.object)
+        Course
+    builtins.object
+        Institution
+        Student
+    
+    class Course(builtins.list)
+     |  Course(cname, majProgram=None)
+     |  
+     |  A course is a list of students
+     |  
+     |  Method resolution order:
+     |      Course
+     |      builtins.list
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, cname, majProgram=None)
+     |      Provide a name and major program for a course
+     |  
+     |  __str__(self)
+     |      Return str(self).
+     |  
+     |  find(name)
+     |      Return the course object specified or return None if it doesn't exist
+     |  
+     |  prerequisite(self, preCourse)
+     |      Add to the list of prerequisites for this course object.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  allCourses = []
+     |  
+     |  ----------------------------------------------------------------------
+     |  Some Methods inherited from builtins.list:
+     |  
+     |  append(self, object, /)
+     |      Append object to the end of the list.
+     |  
+     |  clear(self, /)
+     |      Remove all items from list.
+     |
+
+    
+    class Institution(builtins.object)
+     |  Institution(name)
+     |  
+     |  The institution class controls the current registry and courses list.
+     |  Courses and students object created while the Institution is active
+     |  are added to that institution's registry and courses list.
+     |  
+     |  Only one institution may be active at a time.
+     |  
+     |  Instance Attributes
+     |  
+     |      name: the name which uniquely identifies of the institution
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, name)
+     |      Activate a new institution object with the given name
+     |  
+     |  activate(self)
+     |      Deactivate the active institution and activate this one
+     |  
+     |  clear(self)
+     |      Empty the institutions records - no students, no courses
+     |
+     |  deactivate(self)
+     |      Deactivate this institution
+     |
+    
+    class Student(builtins.object)
+     |  Student(sname, sid=None)
+     |  
+     |  Information on individual students. Also maintains a dictionary of 
+     |  all known students
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, sname, sid=None)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  __iter__(self)
+     |      # iterator method - go through courses and pick out those having
+     |      # this student as a member
+     |  
+     |  __str__(self)
+     |      Return str(self).
+     |  
+     |  backup(storefile='studentRegistry.store')
+     |      backup the student registry with a default file.
+     |      This is written as a function rather than a method.  The 
+     |      accepted way to create a static method is use a @staticmethod
+     |      decorator, but as a teaching example, @staticmethod hasn't
+     |      been introduced yet.
+     |  
+     |  load(loadfile='studentRegistry.store')
+     |      load the student registry
+     |
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |
+     |  
+     |  registry = {}
+
+FUNCTIONS
+    command_loop()
+
+FILE
+    /home/brown/courses/2005/Assignments/Assignment3/school.py
+
+
