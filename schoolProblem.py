@@ -14,9 +14,9 @@ Enumerate additional attributions by adding items to this list:
 2. Original problem sources by Prof. E. Brown, Oct, 2022
 
 """
-
 import random
 import datetime
+import shelve
 
 
 class Course(list):
@@ -33,6 +33,7 @@ class Course(list):
         self._prerequisites = []
         Course.allCourses.append(self)
 
+
     def prerequisite(self, preCourse):
         """
         Add to the list of prerequisites for this course object.
@@ -46,11 +47,41 @@ class Course(list):
 
     def find(name):
         """Return the course object specified or return None"""
+
+        for i in Course.allCourses:
+            if i.courseName == name:
+                return i
+
         return None
 
     def __str__(self):
         return self.courseName
 
+class Institution:
+
+    def __init__(self, name):
+        self.instName = name
+
+    def activate(self):
+
+        if self.instName is None:
+
+            d = shelve.open('newFile.txt','w')
+            c = [Course.allcourses]
+            r = [Student.registry]
+            d.write(self.instName, "\n")
+            d.sync()
+            d.close()
+        else:
+            pass
+
+    def clear(self):
+        Course.allCourses.clear()
+        Student.registry.clear()
+
+    def deactivate(self):
+
+        pass
 
 class Student:
     """
